@@ -7,9 +7,6 @@ Here are a dozen bite-sized, hands-on challenges—organized by topic—to get y
 Swap Without a Temp
 Write a snippet that swaps the values of a and b without using a third variable.
 
-python
-Copy
-Edit
 a = 5
 b = 12
 
@@ -121,3 +118,31 @@ Wrap logic in functions in a module you import.
 
 Run it inside a new venv and freeze your requirements.
 
+
+## 4. Error Handling (Additional Practice)
+
+- **Logging Exceptions**  
+  Write a function `divide_and_log(a, b, logfile)` that attempts to divide `a/b`.  
+  - On success, return the result.  
+  - On error (any `Exception`), append the full traceback to `logfile` and return `None`.  
+  _Hint: use `traceback.format_exc()` inside your `except` block._
+
+- **Retry on Failure**  
+  Implement `retry(func, tries)` that calls zero-arg function `func()` up to `tries` times until it doesn’t raise an exception.  
+  - If it succeeds, return its value immediately.  
+  - If it still fails after `tries`, re-raise the last exception.
+
+- **Multiple Excepts & `else`**  
+  Write `parse_int(s)` that:  
+  1. Tries `int(s)`.  
+  2. If `ValueError`, prints “Not an integer.”  
+  3. If any other `Exception`, prints “Unknown error.”  
+  4. If no exception, prints “Success!” and returns the integer.
+
+- **Context Manager Errors**  
+  Create a context manager class `suppress(exc_type)` that suppresses only exceptions of type `exc_type` inside its `with` block.  
+  ```python
+  with suppress(KeyError):
+      d = {}
+      print(d['nope'])   # KeyError is swallowed
+      x = 1/0            # ZeroDivisionError propagates
